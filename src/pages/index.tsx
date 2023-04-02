@@ -1,6 +1,16 @@
 import React from 'react';
+import { atom, useRecoilState } from 'recoil';
 import { useQuery } from '@tanstack/react-query'
-import { Box, CircularProgress, List, ListItem, Typography } from '@mui/material'
+import {
+  Box,
+  Button,
+  CircularProgress,
+  List,
+  ListItem,
+  TextField,
+  Typography,
+} from '@mui/material'
+import { Stack } from '@mui/system';
 
 interface Todo {
   id: number;
@@ -9,7 +19,13 @@ interface Todo {
   completed: boolean;
 }
 
+const textState = atom({
+  key: 'textState',
+  default: '',
+});
+
 export default function Home() {
+  const [text, setText] = useRecoilState(textState);
   const { data, isLoading } = useQuery({
     queryKey: ['todos'],
     queryFn: () => fetch('https://jsonplaceholder.typicode.com/todos')
@@ -17,6 +33,10 @@ export default function Home() {
   });
 
   const todos = data?.slice(0, 10) || [];
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setText(e.target.value);
+  };
 
   if (isLoading) {
     return (
@@ -31,6 +51,15 @@ export default function Home() {
       <Typography variant='h3' component="h1">
         Todo List
       </Typography>
+      <Stack spacing={1} direction="row">
+        <TextField
+          variant='outlined'
+          size='small'
+          value={text}
+          onChange={handleChange}
+        />
+        <Button variant="contained">추가</Button>
+      </Stack>
       <List>
         {todos.map((todo: Todo) =>
           <ListItem key={todo.id}>
