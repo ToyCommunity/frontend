@@ -11,7 +11,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <div>이것은 홈입니다.</div>
+        <div>웹훅 테스트</div>
       </main>
     </>
   )
