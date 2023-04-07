@@ -1,7 +1,7 @@
 import React from 'react';
-import { LockOutlined } from '@mui/icons-material'
-import { Avatar, Box, Button, Container, TextField, Typography } from '@mui/material'
-import { blue, grey } from '@mui/material/colors'
+import { LockOutlined } from '@mui/icons-material';
+import { Avatar, Box, Button, Container, TextField, Typography } from '@mui/material';
+import { blue, grey } from '@mui/material/colors';
 
 function SignUp() {
   return (
@@ -77,7 +77,7 @@ function SignUp() {
         </Typography>
       </Box>
     </Container>
-  )
+  );
 }
 
-export default SignUp
+export default SignUp;

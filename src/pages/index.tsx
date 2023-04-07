@@ -1,6 +1,6 @@
 import React from 'react';
 import { atom, useRecoilState } from 'recoil';
-import { useQuery } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query';
 import {
   Box,
   Button,
@@ -9,7 +9,7 @@ import {
   ListItem,
   TextField,
   Typography,
-} from '@mui/material'
+} from '@mui/material';
 import { Stack } from '@mui/system';
 
 interface Todo {
@@ -43,15 +43,17 @@ export default function Home() {
       <Box>
         <CircularProgress />
       </Box>
-    )
+    );
   }
 
   return (
     <main>
-      <Typography variant='h3' component="h1">
+      <Typography variant='h3'
+        component="h1">
         Todo List
       </Typography>
-      <Stack spacing={1} direction="row">
+      <Stack spacing={1}
+        direction="row">
         <TextField
           variant='outlined'
           size='small'
@@ -62,12 +64,12 @@ export default function Home() {
       </Stack>
       <List>
         {todos.map((todo: Todo) =>
-          <ListItem key={todo.id}>
-            <Typography variant='body1'>
-              {todo.title}
-            </Typography>
-          </ListItem>)}
+        (<ListItem key={todo.id}>
+          <Typography variant='body1'>
+            {todo.title}
+          </Typography>
+        </ListItem>))}
       </List>
     </main>
-  )
+  );
 }
