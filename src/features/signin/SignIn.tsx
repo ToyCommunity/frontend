@@ -60,7 +60,7 @@ function Login() {
           >
             로그인
           </Button>
-          <Link 
+          <Link
             display="flex"
             justifyContent="right"
             href="signup"
@@ -73,9 +73,9 @@ function Login() {
           color={grey[500]}
           mt={8}
           mb={4}
-          >
-            Copyright © Shynity 2023.
-          </Typography>
+        >
+          Copyright © Shynity 2023.
+        </Typography>
       </Box>
     </Container>
   )
