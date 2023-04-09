@@ -48,12 +48,16 @@ export default function Home() {
 
   return (
     <main>
-      <Typography variant='h3'
-        component="h1">
+      <Typography
+        variant='h3'
+        component="h1"
+      >
         Todo List
       </Typography>
-      <Stack spacing={1}
-        direction="row">
+      <Stack
+        spacing={1}
+        direction="row"
+      >
         <TextField
           variant='outlined'
           size='small'
