@@ -1,7 +1,7 @@
 import React from 'react';
-import { LockOutlined } from '@mui/icons-material'
-import { Avatar, Box, Button, Container, TextField, Typography, Link } from '@mui/material'
-import { blue, grey } from '@mui/material/colors'
+import { LockOutlined } from '@mui/icons-material';
+import { Avatar, Box, Button, Container, TextField, Typography, Link } from '@mui/material';
+import { blue, grey } from '@mui/material/colors';
 
 function Login() {
   return (
@@ -56,16 +56,15 @@ function Login() {
               marginTop: "24px",
               marginBottom: "16px"
             }}
-
           >
             로그인
           </Button>
-          <Link 
+          <Link
             display="flex"
             justifyContent="right"
             href="signup"
           >
-            Don't have an account? Sign Up
+            {"Don't have an account? Sign Up"}
           </Link>
         </Box>
         <Typography
@@ -73,12 +72,12 @@ function Login() {
           color={grey[500]}
           mt={8}
           mb={4}
-          >
-            Copyright © Shynity 2023.
-          </Typography>
+        >
+          Copyright © Shynity 2023.
+        </Typography>
       </Box>
     </Container>
-  )
+  );
 }
 
 export default Login;
