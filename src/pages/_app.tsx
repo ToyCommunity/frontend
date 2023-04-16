@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { RecoilRoot } from 'recoil';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import type { AppProps } from 'next/app'
-import Layout from '@/components/Layout'
+import Layout from '../components/Layout'
 
 const queryClient = new QueryClient();
 
