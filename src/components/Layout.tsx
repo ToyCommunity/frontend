@@ -9,14 +9,13 @@ interface Props {
 }
 
 const Layout = ({children}: Props) => {
-    const router = useRouter();
-    if (router.route === '/signin' || router.route === '/signup') {
+    const { pathname } = useRouter();
+    const pathnames = ['/signin', '/signup'];
+    if (pathnames.includes(pathname)) {
         return (
-            <>
-                <Box>
-                    {children}
-                </Box>
-            </>
+            <Box>
+                {children}
+            </Box>
         )
     } else {
         return (
