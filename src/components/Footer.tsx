@@ -7,38 +7,38 @@ import { grey } from '@mui/material/colors'
 function Footer() {
     return (
         
-    <Container
-        maxWidth="lg"
-    >
-        <Box
-            display="flex"
-            justifyContent="space-between"
-            alignItems="center"
-            sx={{                    
-                height: "50px"
-            }}
+        <Container
+            maxWidth="lg"
         >
-            <Typography
-                variant='body2'
-                color={grey[500]}
-                >
-                Copyright © Shynity 2023.
-            </Typography>
-            <Box 
+            <Box
                 display="flex"
-                justifyContent="right"
+                justifyContent="space-between"
                 alignItems="center"
+                sx={{                    
+                    height: "50px"
+                }}
             >
-                <Link 
-                    href="https://github.com/ToyCommunity"
+                <Typography
+                    variant='body2'
                     color={grey[500]}
-                    underline="none"
+                    >
+                    Copyright © Shynity 2023.
+                </Typography>
+                <Box 
+                    display="flex"
+                    justifyContent="right"
+                    alignItems="center"
                 >
-                    <GitHub/>
-                </Link>
+                    <Link 
+                        href="https://github.com/ToyCommunity"
+                        color={grey[500]}
+                        underline="none"
+                    >
+                        <GitHub/>
+                    </Link>
+                </Box>
             </Box>
-        </Box>
-    </Container>
+        </Container>
     )
 }
 export default Footer
