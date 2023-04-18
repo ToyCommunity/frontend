@@ -2,8 +2,15 @@ import React from 'react';
 import { LockOutlined } from '@mui/icons-material';
 import { Avatar, Box, Button, Container, TextField, Typography } from '@mui/material';
 import { blue, grey } from '@mui/material/colors';
+import { useSignUp } from '@/hooks';
 
 function SignUp() {
+  const { } = useSignUp();
+
+  const handleSubmit = () => {
+
+  };
+
   return (
     <Container
       maxWidth="xs"
