@@ -1,5 +1,6 @@
 
 import Nav from './Nav'
+import Footer from './Footer'
 import { Box } from '@mui/material'
 
 interface Props {
@@ -12,11 +13,13 @@ const Layout = ({children}: Props) => {
             <Nav/>
             <Box
                 sx={{ 
-                    borderTop: "1px solid #ebebeb"
+                    borderTop: "1px solid #ebebeb",
+                    borderBottom: "1px solid #ebebeb"
                 }}
             >
                 {children}
             </Box>
+            <Footer/>
         </>
     )
 }
