@@ -1,23 +1,19 @@
 
 import React from 'react';
-import { Box, Link } from '@mui/material'
+import { Container, Box, Link } from '@mui/material'
 import { grey } from '@mui/material/colors'
 
 function Nav() {
     return (
-
-    <Box 
-        sx={{ 
-            width: 1,
-            height: "50px",
-            borderBottom: "1px solid grey"
-        }}
+        
+    <Container
+        maxWidth="lg"
     >
-        <Box 
-            display="grid" 
-            gridTemplateColumns="repeat(12, 1fr)"
+        <Box
+            display="flex"
+            justifyContent="space-between"
+            alignItems="center"
             sx={{
-                paddingX: '20px'
             }}
         >
             <Box 
@@ -72,7 +68,7 @@ function Nav() {
                 </Link>
             </Box>
         </Box>
-    </Box>
+    </Container>
     )
 }
 export default Nav
