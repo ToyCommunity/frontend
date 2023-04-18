@@ -7,7 +7,7 @@ function Nav() {
     return (
         
     <Container
-        maxWidth="xl"
+        maxWidth="lg"
     >
         <Box
             display="flex"
