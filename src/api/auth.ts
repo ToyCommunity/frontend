@@ -6,7 +6,7 @@ export interface SignUpRequest {
 
 export interface SignUpResponse {
   email: string;
-  nickname: string;
+  nickname?: string;
 }
 
 // eslint-disable-next-line no-unused-vars

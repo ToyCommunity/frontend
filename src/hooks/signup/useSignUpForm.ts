@@ -31,7 +31,7 @@ const schema = yup.object({
     })
 });
 
-type SignUpForm = yup.InferType<typeof schema>;
+export type SignUpForm = yup.InferType<typeof schema>;
 
 function useSignUpForm() {
   const form = useForm<SignUpForm>({

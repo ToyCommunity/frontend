@@ -1,18 +1,20 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 import { LockOutlined } from '@mui/icons-material';
 import { Avatar, Box, Button, Container, TextField, Typography } from '@mui/material';
 import { blue, grey } from '@mui/material/colors';
 import { useSignUp, useSignUpForm } from '@/hooks/signup';
+import { SignUpForm } from '@/hooks/signup/useSignUpForm';
 
 function SignUp() {
-  const { register, handleSubmit: signIn, formState: { errors }
+  const router = useRouter();
+  const { register, handleSubmit, formState: { errors }
   } = useSignUpForm();
   const { mutate } = useSignUp();
 
-  const handleSubmit = () => {
-    signIn((data) => {
-      mutate(data);
-    });
+  const onSubmit = (data: SignUpForm) => {
+    mutate(data);
+    router.push('/signup/complete');
   };
 
   return (
@@ -44,7 +46,7 @@ function SignUp() {
           display="block"
           component="form"
           noValidate
-          onSubmit={handleSubmit}
+          onSubmit={handleSubmit(onSubmit)}
         >
           <TextField
             id="nickname"
