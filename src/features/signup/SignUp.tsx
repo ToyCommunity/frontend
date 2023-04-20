@@ -1,9 +1,22 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 import { LockOutlined } from '@mui/icons-material';
 import { Avatar, Box, Button, Container, TextField, Typography } from '@mui/material';
 import { blue, grey } from '@mui/material/colors';
+import { useSignUp, useSignUpForm } from '@/hooks/signup';
+import { SignUpForm } from '@/hooks/signup/useSignUpForm';
 
 function SignUp() {
+  const router = useRouter();
+  const { register, handleSubmit, formState: { errors }
+  } = useSignUpForm();
+  const { mutate } = useSignUp();
+
+  const onSubmit = (data: SignUpForm) => {
+    mutate(data);
+    router.push('/signup/complete');
+  };
+
   return (
     <Container
       maxWidth="xs"
@@ -33,27 +46,52 @@ function SignUp() {
           display="block"
           component="form"
           noValidate
+          onSubmit={handleSubmit(onSubmit)}
         >
           <TextField
-            id="id"
-            label="아이디"
+            id="nickname"
+            label="닉네임"
             variant="outlined"
             margin="normal"
             fullWidth
+            error={!!errors.nickname}
+            helperText={errors.nickname?.message}
+            {...register('nickname')}
+          />
+          <TextField
+            id="email"
+            label="이메일"
+            variant="outlined"
+            margin="normal"
+            error={!!errors.email}
+            helperText={errors.email?.message}
+            fullWidth
+            required
+            {...register('email')}
           />
           <TextField
             id="password"
+            type='password'
             label="비밀번호"
             variant="outlined"
             margin="normal"
+            error={!!errors.password}
+            helperText={errors.password?.message}
             fullWidth
+            required
+            {...register('password')}
           />
           <TextField
-            id="password-confirm"
+            id="password-confirmation"
+            type="password"
             label="비밀번호 재확인"
             variant="outlined"
             margin="normal"
+            error={!!errors.passwordConfirmation}
+            helperText={errors.passwordConfirmation?.message}
             fullWidth
+            required
+            {...register('passwordConfirmation')}
           />
           <Button
             type='submit'
@@ -76,7 +114,7 @@ function SignUp() {
           Copyright © Shynity 2023.
         </Typography>
       </Box>
-    </Container>
+    </Container >
   );
 }
 
