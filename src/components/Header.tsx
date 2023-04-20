@@ -25,7 +25,7 @@ function Nav() {
                 }}
             >
                 <Link 
-                    href="index"
+                    href="/"
                     color={grey[900]}
                     underline="none"
                     sx={{     
