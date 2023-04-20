@@ -24,12 +24,9 @@ const schema = yup.object({
     ),
   nickname: yup
     .string()
-    .when({
-      is: (value: string) => value !== "",
-      then: (schema) => schema
-        .min(2, "닉네임은 최소 2자 이상이어야 합니다.")
-        .max(10, "닉네임은 최대 10자 이하이어야 합니다."),
-    })
+    .required()
+    .min(2, "닉네임은 최소 2자 이상이어야 합니다.")
+    .max(10, "닉네임은 최대 10자 이하이어야 합니다."),
 });
 
 export type SignUpForm = yup.InferType<typeof schema>;
