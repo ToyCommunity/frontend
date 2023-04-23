@@ -24,13 +24,14 @@
       "error",
       "always"
     ],
-    "no-unused-vars": "error",
+    "no-unused-vars": "off",
     "react/jsx-uses-react": "error",
     "react/jsx-uses-vars": "error",
     "react/jsx-no-duplicate-props": "error",
     "react/prop-types": "error",
     "react-hooks/rules-of-hooks": "error",
     "react/jsx-props-no-spreading": "off",
+    "@typescript-eslint/no-unused-vars": "error",
     "react/jsx-max-props-per-line": [
       "error",
       {
