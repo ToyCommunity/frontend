@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
-import { Button, TextField, Container, Stack } from '@mui/material';
+import { Button, Container, Stack, TextField } from '@mui/material';
 import MDEditorSkeleton from './MDEditorSkeleton';
+import { useBeforeUnload } from '@/hooks/common';
 
-import "@uiw/react-md-editor/markdown-editor.css";
 import "@uiw/react-markdown-preview/markdown.css";
+import "@uiw/react-md-editor/markdown-editor.css";
 
 const MDEditor = dynamic(
   () => import("@uiw/react-md-editor"),
@@ -16,6 +17,8 @@ const MDEditor = dynamic(
 function PostEditor() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+
+  useBeforeUnload({});
 
   const handleChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
@@ -45,8 +48,20 @@ function PostEditor() {
         textareaProps={{ placeholder: '내용을 입력해주세요.' }}
         onChange={handleChangeContent}
       />
-      <Stack mt={1}>
-        <Button variant='contained'>작성</Button>
+      <Stack
+        marginY={1}
+        gap={1}
+        direction="row"
+        display='flex'
+        justifyContent='flex-end'
+      >
+        <Button
+          href="/"
+          variant="outlined"
+        >
+          취소
+        </Button>
+        <Button variant="contained">등록</Button>
       </Stack>
     </Container >
   );
