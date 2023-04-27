@@ -3,13 +3,21 @@ import { RemoveRedEye, Comment, ThumbUp } from '@mui/icons-material';
 import { Card as MuiCard, CardContent,  Typography, Box, Avatar } from '@mui/material';
 import { yellow, orange, grey } from '@mui/material/colors';
 
+interface Post {
+  title: string;
+  id: number;
+  body: string;
+}
 
-function Card() {
+interface CardProps {
+  post: Post;
+}
+const Card: React.FC<CardProps> = ({ post }) => {
   return (
     <div>
       <MuiCard
         sx={{ 
-          height: '100%', 
+          height: '252px', 
           display: 'flex', 
           flexDirection: 'column',
           backgroundColor: yellow[50],
@@ -36,10 +44,14 @@ function Card() {
             sx={{ 
               fontSize: '18px',
               fontWeight: 'bold',
-              lineHeight: '140%'
+              lineHeight: '140%',
+              display: 'block',
+              whiteSpace: 'nowrap', 
+              overflow: 'hidden',
+              textOverflow: 'ellipsis'
             }}
           >
-            사이드 프로젝트를 했는데, 피드백 주시면 감사하겠습니다!
+            { post.title }
           </Typography>
           <Typography
             gutterBottom 
@@ -53,8 +65,7 @@ function Card() {
               color: grey[500]
             }}
           >
-            안녕하세요, 저는 6개월차 백엔드 개발자입니다.
-            문제를 풀어보며 django를 학습할 수 있는 DJ-OJ라는 서비스를 만들어봤습니다.
+            { post.body }
           </Typography>
           <Box
             display="flex"
