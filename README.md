@@ -18,3 +18,9 @@ pnpm dev
 
 - next.js 13
 - typescript
+- axios
+- emotion
+- react-hook-form
+- react-md-editor
+- recoil
+- mui

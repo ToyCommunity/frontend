@@ -1,5 +1,5 @@
-import React from 'react'
-import Card from './Card'
+import React from 'react';
+import Card from './Card';
 import { Container, Grid, Box, Typography } from '@mui/material';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useState, useEffect } from 'react';
@@ -27,7 +27,7 @@ function CardList() {
 
   return (
     <div>
-      <Container 
+      <Container
         maxWidth="lg"
       >
         <InfiniteScroll
@@ -51,28 +51,28 @@ function CardList() {
               </Typography>
             </Box>
           }
+        >
+          <Grid
+            container
+            spacing={4}
           >
-            <Grid 
-              container 
-              spacing={4}
-            >
 
-              {posts.map((post, index) => (
-                <Grid 
-                  item 
-                  key={index} 
-                  sm={12} 
-                  md={6} 
-                  lg={4}
-                >
-                  <Card post={post}/>
-                </Grid>
-              ))}
-            </Grid>
-          </InfiniteScroll>
-        </Container>
+            {posts.map((post, index) => (
+              <Grid
+                item
+                key={index}
+                sm={12}
+                md={6}
+                lg={4}
+              >
+                <Card post={post} />
+              </Grid>
+            ))}
+          </Grid>
+        </InfiniteScroll>
+      </Container>
     </div>
-  )
+  );
 }
 
-export default CardList
+export default CardList;
