@@ -6,7 +6,7 @@
     "dev": "next dev",
     "start": "next start",
     "build": "next build && next export",
-    "predeploy": "npm run build",
+    "predeploy": "NODE_ENV=production yarn build ",
     "deploy": "touch out/.nojekyll && gh-pages -d out --dotfiles",
     "lint": "eslint './src/**/*.{ts,tsx}'",
     "lint:fix": "eslint --fix './src/**/*.{ts,tsx}'"
