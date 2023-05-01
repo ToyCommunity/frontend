@@ -2,6 +2,7 @@ const removeImports = require('next-remove-imports')();
 
 /** @type {import('next').NextConfig} */
 const nextConfig = removeImports({
+  basePath: '/frontend',
   reactStrictMode: true,
   swcMinify: true,
   modularizeImports: {
@@ -10,9 +11,8 @@ const nextConfig = removeImports({
     },
     '@mui/icons-material': {
       transform: '@mui/icons-material/{{member}}',
-    }
-  }
+    },
+  },
 });
-
 
 module.exports = nextConfig;
