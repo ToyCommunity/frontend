@@ -9,7 +9,7 @@ export interface SignUpResponse {
   nickname: string;
 }
 
-// eslint-disable-next-line no-unused-vars
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const signUp = async ({ email, password, nickname }: SignUpRequest) => {
   const res = await new Promise<SignUpResponse>((resolve) => {
     const signUpResponse: SignUpResponse = {
@@ -37,7 +37,7 @@ export interface SignInResponse {
   refreshTokenExpiredTime: number;
 }
 
-// eslint-disable-next-line no-unused-vars
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const signIn = async ({ email, password }: SignInRequest) => {
   const signInResponse: SignInResponse = {
     accessToken: 'eyJhbGciOiJIUzUxMiJ9.eyJpZCI6MSwiaWF0IjoxNjgxNjUxMDc1LCJleHAiOjE2ODE2NTQ2NzV9.AnbPfMwqA_RnLtNonR21Ip0gHLGjqop2OZ3tIBoJYnJW_Bn55GkbeVBm8DLVocKNvSsy5MNzlWC2j0pMoU0q4g',
