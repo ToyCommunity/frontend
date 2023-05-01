@@ -30,7 +30,7 @@ function Complete() {
           회원가입 완료
         </Typography>
         <Link
-          href="/signin"
+          href="/frontend/signin"
           passHref
         >
           <Button

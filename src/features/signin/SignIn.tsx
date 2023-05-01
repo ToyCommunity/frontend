@@ -62,7 +62,7 @@ function Login() {
           <Link
             display="flex"
             justifyContent="right"
-            href="/signup"
+            href="/frontend/signup"
           >
             {"Don't have an account? Sign Up"}
           </Link>

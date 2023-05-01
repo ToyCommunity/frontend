@@ -46,7 +46,7 @@ function Nav() {
           }}
         >
           <Link
-            href="/signin"
+            href="/frontend/signin"
             color={grey[500]}
             underline="none"
             sx={{
@@ -57,7 +57,7 @@ function Nav() {
           </Link>
 
           <Link
-            href="/signup"
+            href="/frontend/signup"
             color={grey[500]}
             underline="none"
             sx={{

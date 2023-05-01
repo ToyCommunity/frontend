@@ -14,7 +14,7 @@ function SignUp() {
 
   const onSubmit = (data: SignUpForm) => {
     mutate(data);
-    router.push('/signup/complete');
+    router.push('/frontend/signup/complete');
   };
 
   return (
