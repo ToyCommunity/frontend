@@ -2,7 +2,8 @@ const removeImports = require('next-remove-imports')();
 
 /** @type {import('next').NextConfig} */
 const nextConfig = removeImports({
-  basePath: '/frontend',
+  // eslint-disable-next-line no-undef
+  basePath: process.env.NODE_ENV === 'production' ? '/frontend' : '',
   reactStrictMode: true,
   swcMinify: true,
   modularizeImports: {
