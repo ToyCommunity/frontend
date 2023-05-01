@@ -32,6 +32,7 @@ function Complete() {
         <Link
           href="/signin"
           passHref
+          legacyBehavior
         >
           <Button
             size='large'
