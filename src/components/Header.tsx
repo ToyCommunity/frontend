@@ -1,6 +1,7 @@
 
 import React from 'react';
-import { Container, Box, Link } from '@mui/material';
+import Link from 'next/link';
+import { Container, Box, Link as MuiLink } from '@mui/material';
 import { grey } from '@mui/material/colors';
 
 function Nav() {
@@ -26,14 +27,18 @@ function Nav() {
         >
           <Link
             href="/"
-            color={grey[900]}
-            underline="none"
-            sx={{
-              fontWeight: "bold",
-              marginX: "8px"
-            }}
+            passHref
           >
-            라운지
+            <MuiLink
+              color={grey[900]}
+              underline="none"
+              sx={{
+                fontWeight: "bold",
+                marginX: "8px"
+              }}
+            >
+              라운지
+            </MuiLink>
           </Link>
         </Box>
         <Box
@@ -47,24 +52,31 @@ function Nav() {
         >
           <Link
             href="/signin"
-            color={grey[500]}
-            underline="none"
-            sx={{
-              marginX: "8px"
-            }}
+            passHref
           >
-            로그인
+            <MuiLink
+              color={grey[500]}
+              underline="none"
+              sx={{
+                marginX: "8px"
+              }}
+            >
+              로그인
+            </MuiLink>
           </Link>
-
           <Link
             href="/signup"
-            color={grey[500]}
-            underline="none"
-            sx={{
-              marginX: "8px"
-            }}
+            passHref
           >
-            회원가입
+            <MuiLink
+              color={grey[500]}
+              underline="none"
+              sx={{
+                marginX: "8px"
+              }}
+            >
+              회원가입
+            </MuiLink>
           </Link>
         </Box>
       </Box>
