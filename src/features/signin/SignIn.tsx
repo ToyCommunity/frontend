@@ -1,6 +1,7 @@
 import React from 'react';
+import Link from 'next/link';
 import { LockOutlined } from '@mui/icons-material';
-import { Avatar, Box, Button, Container, TextField, Typography, Link } from '@mui/material';
+import { Avatar, Box, Button, Container, TextField, Typography, Link as MuiLink } from '@mui/material';
 import { blue, grey } from '@mui/material/colors';
 
 function Login() {
@@ -60,11 +61,16 @@ function Login() {
             로그인
           </Button>
           <Link
-            display="flex"
-            justifyContent="right"
             href="/signup"
+            passHref
+            legacyBehavior
           >
-            {"Don't have an account? Sign Up"}
+            <MuiLink
+              display="flex"
+              justifyContent="right"
+            >
+              {"Don't have an account? Sign Up"}
+            </MuiLink>
           </Link>
         </Box>
         <Typography

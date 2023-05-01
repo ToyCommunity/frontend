@@ -28,6 +28,7 @@ function Nav() {
           <Link
             href="/"
             passHref
+            legacyBehavior
           >
             <MuiLink
               color={grey[900]}
@@ -53,6 +54,7 @@ function Nav() {
           <Link
             href="/signin"
             passHref
+            legacyBehavior
           >
             <MuiLink
               color={grey[500]}
@@ -67,6 +69,7 @@ function Nav() {
           <Link
             href="/signup"
             passHref
+            legacyBehavior
           >
             <MuiLink
               color={grey[500]}
