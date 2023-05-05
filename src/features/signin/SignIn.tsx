@@ -9,7 +9,6 @@ import { useRouter } from 'next/router';
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const csrfToken = await getCsrfToken(context);
-  console.log('csrfToken', csrfToken);
 
   if (csrfToken) {
     return {
