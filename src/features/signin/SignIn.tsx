@@ -1,10 +1,29 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { signIn } from 'next-auth/react';
+import { GetServerSidePropsContext } from 'next';
+import { getCsrfToken, signIn } from 'next-auth/react';
 import { LockOutlined } from '@mui/icons-material';
 import { Avatar, Box, Button, Container, TextField, Typography, Link as MuiLink, Alert } from '@mui/material';
 import { blue, grey } from '@mui/material/colors';
 import { useRouter } from 'next/router';
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const csrfToken = await getCsrfToken(context);
+  console.log('csrfToken', csrfToken);
+
+  if (csrfToken) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
+}
 
 function Login() {
   const router = useRouter();
