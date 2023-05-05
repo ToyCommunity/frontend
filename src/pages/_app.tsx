@@ -10,10 +10,13 @@ import '@/styles/globals.css';
 
 const queryClient = new QueryClient();
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({
+  Component,
+  pageProps: { session, ...pageProps }
+}: AppProps) {
   return (
     <RecoilRoot>
-      <SessionProvider>
+      <SessionProvider session={session}>
         <QueryClientProvider client={queryClient}>
           <Head>
             <title>Create Next App</title>
