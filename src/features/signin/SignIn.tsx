@@ -36,7 +36,8 @@ function Login() {
     });
 
     if (res?.ok) {
-      router.push('/');
+      const url = (router.query.callbackUrl as string) ?? '/';
+      router.push(url);
     }
 
     if (res?.status === 401) {
