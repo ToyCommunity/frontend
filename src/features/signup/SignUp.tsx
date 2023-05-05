@@ -1,17 +1,18 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import { GetServerSidePropsContext } from 'next';
-import { getCsrfToken } from 'next-auth/react';
 import { LockOutlined } from '@mui/icons-material';
 import { Avatar, Box, Button, Container, TextField, Typography } from '@mui/material';
 import { blue, grey } from '@mui/material/colors';
 import { useSignUp, useSignUpForm } from '@/hooks/signup';
 import { SignUpForm } from '@/hooks/signup/useSignUpForm';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/pages/api/auth/[...nextauth]';
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const csrfToken = await getCsrfToken(context);
+  const session = await getServerSession(context.req, context.res, authOptions);
 
-  if (csrfToken) {
+  if (session) {
     return {
       redirect: {
         destination: '/',
