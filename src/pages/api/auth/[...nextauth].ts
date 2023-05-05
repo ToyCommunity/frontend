@@ -1,6 +1,7 @@
 
 import NextAuth, { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { authApi } from "@/api";
 
 export const authOptions: AuthOptions = {
   providers: [
@@ -11,42 +12,41 @@ export const authOptions: AuthOptions = {
         password: { label: "비밀번호", type: "password" },
       },
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      async authorize(credentials, req) {
-        const user = { id: '1', name: 'ssabi', email: 'test@test.com' };
+      async authorize(credentials) {
+        const params = {
+          email: credentials?.email ?? '',
+          password: credentials?.password ?? '',
+        };
 
-        return null;
+        const data = await authApi.signIn(params);
 
-        if(user){
-          return user;
+        if(data){
+          return {
+            id: "1",
+            ...data,
+          };
         } else {
           return null;
         }
-
-        // const params = {
-        //   email: credentials?.email ?? '',
-        //   password: credentials?.password ?? '',
-        // };
-        // const { access_token, refresh_token } = await authApi.signIn(params);
-        // const payloadB64 = access_token.split('.')[1];
-        // const payload = JSON.parse(window.atob(payloadB64));
-        
-        // if (payload) {
-        //   return { 
-        //     id: payload.id,
-        //     access_token,
-        //     refresh_token,
-        //   };
-        // } else {
-        //   return null;
-        // }
       },
     }),
   ],
   session: {
-    strategy: 'jwt'
+    maxAge: 60 * 60 * 24 // 1 day
   },
   pages: {
     signIn: '/signin'
   },
+  callbacks: {
+    async jwt({ token, user}) {
+      return { ...token, ...user };
+    },
+    async session({ session, token }) {
+      session.user.accessToken = token.access_token as any;
+      session.user.refreshToken = token.refresh_token as any;
+
+      return session;
+    }
+  }
 };
 export default NextAuth(authOptions);
