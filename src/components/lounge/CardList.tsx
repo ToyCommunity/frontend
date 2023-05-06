@@ -1,9 +1,8 @@
-import React from 'react';
-import Card from './Card';
+import React, { useState, useEffect } from 'react';
 import { Container, Grid, Box, Typography } from '@mui/material';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { useState, useEffect } from 'react';
 import { Post, postApi } from '@/api';
+import Card from './Card';
 
 function CardList() {
   const [posts, setPosts] = useState<Post[]>([]);
