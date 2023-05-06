@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { AxiosError } from 'axios';
 
 export interface ErrorDetail {
   code: string;
