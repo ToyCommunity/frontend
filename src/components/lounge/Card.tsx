@@ -3,6 +3,11 @@ import { RemoveRedEye, Comment, ThumbUp } from '@mui/icons-material';
 import { Card as MuiCard, CardContent, Typography, Box, Avatar } from '@mui/material';
 import { yellow, orange, grey } from '@mui/material/colors';
 import { Post } from '@/api';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import 'dayjs/locale/ko';
+
+dayjs.extend(relativeTime);
 
 interface CardProps {
   post: Post;
@@ -10,6 +15,7 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ post }) => {
   const { category, title, nickname, postContent, createdAt, viewCounts, likeCounts } = post;
+  const fromNow = dayjs(createdAt).locale('ko').fromNow();
 
   return (
     <div>
@@ -88,7 +94,7 @@ const Card: React.FC<CardProps> = ({ post }) => {
             >
               {nickname}
               <br />
-              {createdAt}
+              {fromNow}
             </Typography>
           </Box>
           <Box
