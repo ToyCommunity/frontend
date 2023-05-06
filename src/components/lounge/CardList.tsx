@@ -3,22 +3,18 @@ import Card from './Card';
 import { Container, Grid, Box, Typography } from '@mui/material';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
-interface Post {
-  title: string;
-  id: number;
-  body: string;
-}
+import { Post, postApi } from '@/api';
+
 function CardList() {
   const [posts, setPosts] = useState<Post[]>([]);
-  const [page, setPage] = useState<number>(1);
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
 
   const loadPosts = async () => {
-    const response = await axios.get(
-      `https://jsonplaceholder.typicode.com/posts?_page=${page}&_limit=10`,
-    );
-    setPosts([...posts, ...response.data]);
+    const data = await postApi.getPosts();
+    setPosts([...posts, ...data.postResults]);
     setPage(page + 1);
+    setHasMore(data.totalPages > page);
   };
 
   useEffect(() => {
@@ -33,7 +29,7 @@ function CardList() {
         <InfiniteScroll
           dataLength={posts.length}
           next={loadPosts}
-          hasMore={true}
+          hasMore={hasMore}
           loader={
             <Box
               display="flex"
@@ -56,7 +52,6 @@ function CardList() {
             container
             spacing={4}
           >
-
             {posts.map((post, index) => (
               <Grid
                 item
