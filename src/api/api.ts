@@ -11,8 +11,6 @@ export interface ErrorResponse {
   detail: ErrorDetail,
 }
 
-AxiosError<>
-
 const api = typeof window === 'undefined'
   ? axios.create({
     baseURL: process.env?.NEXT_PUBLIC_BASE_URL || '',
