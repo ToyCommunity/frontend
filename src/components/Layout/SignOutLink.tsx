@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Link from 'next/link';
 import { Link as MuiLink } from '@mui/material';
@@ -20,7 +19,7 @@ function SignOutLink() {
         로그아웃
       </MuiLink>
     </Link>
-  )
+  );
 }
 
-export default SignOutLink
+export default SignOutLink;
