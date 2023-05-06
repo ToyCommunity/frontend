@@ -11,7 +11,6 @@ export const authOptions: AuthOptions = {
         email: { label: "이메일", type: "text" },
         password: { label: "비밀번호", type: "password" },
       },
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       async authorize(credentials) {
         const params = {
           email: credentials?.email ?? '',
@@ -38,7 +37,7 @@ export const authOptions: AuthOptions = {
     signIn: '/signin'
   },
   callbacks: {
-    async jwt({ token, user}) {
+    async jwt({ token, user }) {
       return { ...token, ...user };
     },
     async session({ session, token }) {
