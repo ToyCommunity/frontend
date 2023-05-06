@@ -11,7 +11,6 @@ const useAuth = () => {
     const requestIntercept = api.interceptors.request.use(
       (config) => {
         if (!config.headers["Authorization"]) {
-          console.log('session', session?.user.accessToken);
           config.headers["Authorization"] = `Bearer ${session?.user?.accessToken}`;
         }
         return config;
