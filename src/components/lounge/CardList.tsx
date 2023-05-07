@@ -10,7 +10,7 @@ function CardList() {
   const [hasMore, setHasMore] = useState(true);
 
   const loadPosts = async () => {
-    const data = await postApi.getPosts();
+    const data = await postApi.getPosts({ page });
     setPosts([...posts, ...data.postResults]);
     setPage(page + 1);
     setHasMore(data.totalPages > page);

@@ -24,8 +24,12 @@ export interface GetPostsResponse extends Page {
   postResults: Post[];
 }
 
-const getPosts = async () => {
-  const { data } = await api.get<GetPostsResponse>('/posts/list');
+export interface GetPostsRequest {
+  page: number;
+}
+
+const getPosts = async ({ page } : GetPostsRequest) => {
+  const { data } = await api.get<GetPostsResponse>('/posts/list', {params: {page}});
 
   return data;
 };
