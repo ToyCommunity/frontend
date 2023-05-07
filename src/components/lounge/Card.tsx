@@ -2,17 +2,21 @@ import React from 'react';
 import { RemoveRedEye, Comment, ThumbUp } from '@mui/icons-material';
 import { Card as MuiCard, CardContent, Typography, Box, Avatar } from '@mui/material';
 import { yellow, orange, grey } from '@mui/material/colors';
+import { Post } from '@/api';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import 'dayjs/locale/ko';
 
-interface Post {
-  title: string;
-  id: number;
-  body: string;
-}
+dayjs.extend(relativeTime);
 
 interface CardProps {
   post: Post;
 }
+
 const Card: React.FC<CardProps> = ({ post }) => {
+  const { category, title, nickname, postContent, createdAt, viewCounts, likeCounts } = post;
+  const fromNow = dayjs(createdAt).locale('ko').fromNow();
+
   return (
     <div>
       <MuiCard
@@ -37,7 +41,7 @@ const Card: React.FC<CardProps> = ({ post }) => {
               color: orange[500]
             }}
           >
-            자유주제
+            {category}
           </Typography>
           <Typography
             gutterBottom
@@ -51,29 +55,30 @@ const Card: React.FC<CardProps> = ({ post }) => {
               textOverflow: 'ellipsis'
             }}
           >
-            {post.title}
+            {title}
           </Typography>
           <Typography
             gutterBottom
             sx={{
-              lineHeight: '140%',
-              textOverflow: 'ellipsis',
+              height: '84px',
+              display: '-webkit-box',
               overflow: 'hidden',
-              minHeight: '2.5rem',
-              wordBreak: 'keep-all',
+              wordBreak: "keep-all",
+              WebkitBoxOrient: 'vertical',
+              textOverflow: 'ellipsis',
+              WebkitLineClamp: 4,
               fontSize: '14px',
-              color: grey[500]
+              color: grey[500],
             }}
           >
-            {post.body}
+            {postContent}
           </Typography>
           <Box
             display="flex"
             alignItems="center"
           >
             <Avatar
-              alt="Remy Sharp"
-              src="/static/images/avatar/1.jpg"
+              alt="Avatar"
               sx={{
                 width: 36,
                 height: 36,
@@ -87,8 +92,9 @@ const Card: React.FC<CardProps> = ({ post }) => {
                 marginY: '12px'
               }}
             >
-              abc123<br />
-              3일 전
+              {nickname}
+              <br />
+              {fromNow}
             </Typography>
           </Box>
           <Box
@@ -114,7 +120,7 @@ const Card: React.FC<CardProps> = ({ post }) => {
                     marginRight: "8px"
                   }}
                 />
-                30
+                {viewCounts}
               </Typography>
               <Typography
                 display="flex"
@@ -149,7 +155,7 @@ const Card: React.FC<CardProps> = ({ post }) => {
                     marginRight: "8px"
                   }}
                 />
-                20
+                {likeCounts}
               </Typography>
             </Box>
           </Box>
