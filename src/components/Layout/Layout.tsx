@@ -2,6 +2,7 @@
 import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
+import useAuth from '@/hooks/auth';
 import { Box } from '@mui/material';
 import { useRouter } from 'next/router';
 
@@ -12,6 +13,7 @@ interface Props {
 const Layout = ({ children }: Props) => {
   const { pathname } = useRouter();
   const pathnames = ['/signin', '/signup'];
+  useAuth();
 
   if (pathnames.includes(pathname)) {
     return (

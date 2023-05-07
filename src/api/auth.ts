@@ -1,3 +1,5 @@
+import api from "./api";
+
 export interface SignUpRequest {
   email: string;
   password: string;
@@ -9,20 +11,12 @@ export interface SignUpResponse {
   nickname: string;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const signUp = async ({ email, password, nickname }: SignUpRequest) => {
-  const res = await new Promise<SignUpResponse>((resolve) => {
-    const signUpResponse: SignUpResponse = {
-      email,
-      nickname,
-    };
-    
-    setTimeout(() => {
-      resolve(signUpResponse);
-    }, 300);
+const signUp = async (params: SignUpRequest) => {
+  const { data } = await api.post<SignUpResponse>('/users', {
+    ...params
   });
 
-  return res;
+  return data;
 };
 
 export interface SignInRequest {
@@ -31,26 +25,18 @@ export interface SignInRequest {
 }
 
 export interface SignInResponse {
-  accessToken: string;
-  accessTokenExpiredTime: number;
-  refreshToken: string;
-  refreshTokenExpiredTime: number;
+  access_token: string;
+  access_token_expired_time: number;
+  refresh_token: string;
+  refresh_token_expired_time: number;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const signIn = async ({ email, password }: SignInRequest) => {
-  const signInResponse: SignInResponse = {
-    accessToken: 'eyJhbGciOiJIUzUxMiJ9.eyJpZCI6MSwiaWF0IjoxNjgxNjUxMDc1LCJleHAiOjE2ODE2NTQ2NzV9.AnbPfMwqA_RnLtNonR21Ip0gHLGjqop2OZ3tIBoJYnJW_Bn55GkbeVBm8DLVocKNvSsy5MNzlWC2j0pMoU0q4g',
-    accessTokenExpiredTime: 1000 * 60 * 60,
-    refreshToken: 'eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODE2NTEwNzUsImV4cCI6MTY4MTczNzQ3NX0.delW-Pi-lrzmEjJcIT0HVFpJ_C1_7CvompZACl_3XCzWsJ-4NdLuzMFDXxTSGE0JSQuoOaNS4_BmrJdH4Cmp7Q',
-    refreshTokenExpiredTime: 1000 * 60 * 60 * 24,
-  };
-
-  const res = await new Promise<SignInResponse>((resolve) => {
-    setTimeout(() => resolve(signInResponse), 300);
+const signIn = async (params: SignInRequest) => {
+  const { data } = await api.post<SignInResponse>('/login', {
+    ...params
   });
 
-  return res;
+  return data;
 };
 
 export const authApi = {

@@ -1,1 +1,1 @@
-export { default } from '@/features/signup';
+export { default, getServerSideProps } from '@/features/signup';

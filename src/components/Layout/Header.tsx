@@ -3,10 +3,16 @@ import React from 'react';
 import Link from 'next/link';
 import { Container, Box, Link as MuiLink } from '@mui/material';
 import { grey } from '@mui/material/colors';
+import { useSession } from 'next-auth/react';
+import SignOutLink from './SignOutLink';
+import SignInLink from './SignInLink';
 
 function Nav() {
-  return (
+  const { status } = useSession();
+  const loading = status === 'loading';
+  const loggedIn = status === 'authenticated';
 
+  return (
     <Container
       maxWidth="lg"
     >
@@ -14,16 +20,12 @@ function Nav() {
         display="flex"
         justifyContent="space-between"
         alignItems="center"
-        sx={{
-        }}
+        sx={{ height: "50px" }}
       >
         <Box
           gridColumn="span 10"
           display="flex"
           alignItems="center"
-          sx={{
-            height: "50px"
-          }}
         >
           <Link
             href="/"
@@ -47,40 +49,13 @@ function Nav() {
           display="flex"
           justifyContent="right"
           alignItems="center"
-          sx={{
-            height: "50px"
-          }}
         >
-          <Link
-            href="/signin"
-            passHref
-            legacyBehavior
-          >
-            <MuiLink
-              color={grey[500]}
-              underline="none"
-              sx={{
-                marginX: "8px"
-              }}
-            >
-              로그인
-            </MuiLink>
-          </Link>
-          <Link
-            href="/signup"
-            passHref
-            legacyBehavior
-          >
-            <MuiLink
-              color={grey[500]}
-              underline="none"
-              sx={{
-                marginX: "8px"
-              }}
-            >
-              회원가입
-            </MuiLink>
-          </Link>
+          {loading
+            ? null
+            : loggedIn
+              ? <SignOutLink />
+              : <SignInLink />
+          }
         </Box>
       </Box>
     </Container>
