@@ -39,7 +39,10 @@ const signIn = async (params: SignInRequest) => {
   return data;
 };
 
+const signOut = async () => await api.post("/logout");
+
 export const authApi = {
   signUp,
   signIn,
+  signOut,
 };
