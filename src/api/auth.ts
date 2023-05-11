@@ -25,10 +25,10 @@ export interface SignInRequest {
 }
 
 export interface SignInResponse {
-  access_token: string;
-  access_token_expired_time: number;
-  refresh_token: string;
-  refresh_token_expired_time: number;
+  id: number;
+  nickname: string;
+  accessToken: string;
+  refreshToken: string;
 }
 
 const signIn = async (params: SignInRequest) => {
