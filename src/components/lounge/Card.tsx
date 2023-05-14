@@ -15,13 +15,13 @@ interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({ post }) => {
-  const { category, title, nickname, postContent, createdAt, viewCounts, likeCounts } = post;
+  const { category, title, nickname, postContent, createdAt, viewCounts, likeCounts, postId } = post;
   const fromNow = dayjs(createdAt).locale('ko').fromNow();
   const router = useRouter();
   return (
     <div>
       <MuiCard
-        onClick={()=>router.push('/detail')}
+        onClick={()=>router.push(`/detail/${postId}`)}
         sx={{
           height: '252px',
           display: 'flex',
