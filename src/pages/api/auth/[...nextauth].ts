@@ -20,7 +20,10 @@ export const authOptions: AuthOptions = {
         const data = await authApi.signIn(params);
 
         if(data){
-          return data;
+          return {
+            ...data,
+            id: data.id.toString(),
+          };
         } else {
           return null;
         }
