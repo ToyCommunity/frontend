@@ -7,7 +7,7 @@ function useSignOut() {
       .signOut()
       .then(() => {
         nextAuthSignOut();
-    });
+      });
   };
 
   return { signOut };
