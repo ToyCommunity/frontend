@@ -34,7 +34,7 @@ const getPosts = async ({ page } : GetPostsRequest) => {
   return data;
 };
 
-export interface replie {
+export interface Replie {
   replyLikes: number,
   replyStatus: string,
   replyWriterId: number,
@@ -54,7 +54,7 @@ export interface GetDetailResponse {
 	viewCounts: number,
 	postMyReaction: boolean,
 	createdAt: string,
-	replies: replie[],
+	replies: Replie[],
   content: string
 }
 
