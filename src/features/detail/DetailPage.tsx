@@ -1,10 +1,8 @@
-import React ,{ useEffect, useState } from 'react';
+import React from 'react';
 import { Box, Button, Avatar, Container, Typography } from '@mui/material';
-import { blue, orange, grey } from '@mui/material/colors';
-import dayjs from 'dayjs';
+import { orange, grey } from '@mui/material/colors';
 import { ThumbUpAlt, RemoveRedEye, Comment } from '@mui/icons-material';
 import { GetDetailResponse, postApi } from '@/api';
-import { useRouter } from 'next/router';
 import { GetServerSideProps, NextPage } from 'next';
 
 interface DetailProps {
