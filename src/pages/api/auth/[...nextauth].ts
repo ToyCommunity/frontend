@@ -21,8 +21,8 @@ export const authOptions: AuthOptions = {
 
         if(data){
           return {
-            id: "1",
             ...data,
+            id: data.id.toString(),
           };
         } else {
           return null;
@@ -41,8 +41,7 @@ export const authOptions: AuthOptions = {
       return { ...token, ...user };
     },
     async session({ session, token }) {
-      session.user.accessToken = token.access_token as any;
-      session.user.refreshToken = token.refresh_token as any;
+      session.user = token as any;
 
       return session;
     }

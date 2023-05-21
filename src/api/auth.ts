@@ -25,10 +25,10 @@ export interface SignInRequest {
 }
 
 export interface SignInResponse {
-  access_token: string;
-  access_token_expired_time: number;
-  refresh_token: string;
-  refresh_token_expired_time: number;
+  id: number;
+  nickname: string;
+  accessToken: string;
+  refreshToken: string;
 }
 
 const signIn = async (params: SignInRequest) => {
@@ -39,7 +39,10 @@ const signIn = async (params: SignInRequest) => {
   return data;
 };
 
+const signOut = async () => await api.post("/logout");
+
 export const authApi = {
   signUp,
   signIn,
+  signOut,
 };
