@@ -1,1 +1,1 @@
-export { default } from '@/features/detail';
+export { default, getServerSideProps } from '@/features/detail';

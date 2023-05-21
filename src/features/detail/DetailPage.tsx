@@ -5,27 +5,13 @@ import dayjs from 'dayjs';
 import { ThumbUpAlt, RemoveRedEye, Comment } from '@mui/icons-material';
 import { GetDetailResponse, postApi } from '@/api';
 import { useRouter } from 'next/router';
-function DetailPage() {
-  const router = useRouter();
-  const postId = Number(router.query.id);
-  const [detail, setDetail] = useState<GetDetailResponse | null>(null);
+import { GetServerSideProps, NextPage } from 'next';
 
-  const getDetailPost = async () => {
-    try {
-      const data = await postApi.getDetailPost(postId)
-      setDetail(data);
-    } catch (error) {
-      console.error('Error getDetailPost:', error);
-    }
-  };
+interface DetailProps {
+  detail: GetDetailResponse | null;
+}
 
-  useEffect(() => {
-    if (postId) {
-      getDetailPost();
-    }
-  }, [postId])
-
-  
+const DetailPage: NextPage<DetailProps> = ({ detail }) => {
   return (
     <Container
       maxWidth="lg"
@@ -170,4 +156,20 @@ function DetailPage() {
   );
 }
 
+export const getServerSideProps: GetServerSideProps<DetailProps> = async ({ query }) => {
+  const postId = Number(query.id);
+  let detail: GetDetailResponse | null = null;
+
+  try {
+    detail = await postApi.getDetailPost(postId);
+  } catch (error) {
+    console.error('Error getDetailPost:', error);
+  }
+
+  return {
+    props: {
+      detail,
+    },
+  };
+};
 export default DetailPage;
