@@ -34,6 +34,15 @@ const getPosts = async ({ page } : GetPostsRequest) => {
   return data;
 };
 
+export interface CreatePostsRequest {
+  title: string;
+  content: string;
+}
+
+const createPosts = async (params: CreatePostsRequest) => {
+  await api.post('/posts', { params });
+};
+
 export interface Replie {
   replyLikes: number,
   replyStatus: string,
@@ -62,8 +71,10 @@ const getDetailPost = async (postId: number) => {
   const { data } = await api.get<GetDetailResponse>(`/posts/detail/${postId}`);
 
   return data;
-}
+};
+
 export const postApi = {
+  createPosts,
   getPosts,
-  getDetailPost
+  getDetailPost,
 };
