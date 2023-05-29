@@ -34,6 +34,16 @@ const getPosts = async ({ page } : GetPostsRequest) => {
   return data;
 };
 
+export interface CreatePostsRequest {
+  title: string;
+  content: string;
+}
+
+const createPosts = async (params: CreatePostsRequest) => {
+  await api.post('/posts', { params});
+};
+
 export const postApi = {
   getPosts,
+  createPosts
 };
