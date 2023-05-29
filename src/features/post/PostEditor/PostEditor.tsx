@@ -3,9 +3,11 @@ import dynamic from 'next/dynamic';
 import { Button, Container, Stack, TextField } from '@mui/material';
 import MDEditorSkeleton from './MDEditorSkeleton';
 import { useBeforeUnload } from '@/hooks/common';
+import { postApi } from '@/api/post';
 
 import "@uiw/react-markdown-preview/markdown.css";
 import "@uiw/react-md-editor/markdown-editor.css";
+import { useRouter } from 'next/router';
 
 const MDEditor = dynamic(
   () => import("@uiw/react-md-editor"),
@@ -17,6 +19,7 @@ const MDEditor = dynamic(
 function PostEditor() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const router = useRouter();
 
   useBeforeUnload({});
 
@@ -26,6 +29,11 @@ function PostEditor() {
 
   const handleChangeContent = (value?: string) => {
     setContent(value || '');
+  };
+
+  const createPost = async () => {
+    await postApi.createPosts({ title, content });
+    router.push('/');
   };
 
   return (
@@ -61,7 +69,12 @@ function PostEditor() {
         >
           취소
         </Button>
-        <Button variant="contained">등록</Button>
+        <Button
+          variant="contained"
+          onClick={createPost}
+        >
+          등록
+        </Button>
       </Stack>
     </Container >
   );
