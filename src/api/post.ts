@@ -40,7 +40,7 @@ export interface CreatePostsRequest {
 }
 
 const createPosts = async (params: CreatePostsRequest) => {
-  await api.post('/posts', { params});
+  await api.post('/posts', { params });
 };
 
 export const postApi = {
