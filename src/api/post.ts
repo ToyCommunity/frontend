@@ -43,7 +43,38 @@ const createPosts = async (params: CreatePostsRequest) => {
   await api.post('/posts', { params });
 };
 
+export interface Replie {
+  replyLikes: number,
+  replyStatus: string,
+  replyWriterId: number,
+  replyWriterEmai: string,
+  replyWriterNickName: string,
+  createdAt: string,
+}
+
+export interface GetDetailResponse {
+  postId: number,
+	title: string,
+	userId: number,
+	nickname: string,
+	userProfileImg: string,
+	category: string,
+	likeCounts: number,
+	viewCounts: number,
+	postMyReaction: boolean,
+	createdAt: string,
+	replies: Replie[],
+  content: string
+}
+
+const getDetailPost = async (postId: number) => {
+  const { data } = await api.get<GetDetailResponse>(`/posts/detail/${postId}`);
+
+  return data;
+};
+
 export const postApi = {
+  createPosts,
   getPosts,
-  createPosts
+  getDetailPost,
 };
