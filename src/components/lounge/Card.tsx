@@ -21,7 +21,7 @@ const Card: React.FC<CardProps> = ({ post }) => {
   return (
     <div>
       <MuiCard
-        onClick={()=>router.push(`/detail/${postId}`)}
+        onClick={()=>router.push(`/post/${postId}`)}
         sx={{
           height: '252px',
           display: 'flex',
