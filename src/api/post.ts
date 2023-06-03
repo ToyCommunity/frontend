@@ -43,6 +43,16 @@ const createPost = async (params: CreatePostRequest) => {
   await api.post('/posts', { ...params });
 };
 
+export interface UpdatePostRequest {
+  postId: number;
+  title: string;
+  content: string;
+}
+
+const updatePost = async (params: UpdatePostRequest) => {
+  await api.patch('/posts', { ...params });
+};
+
 export interface Replie {
   replyLikes: number,
   replyStatus: string,
@@ -74,7 +84,8 @@ const getDetailPost = async (postId: number) => {
 };
 
 export const postApi = {
-  createPost: createPost,
+  createPost,
+  updatePost,
   getPosts,
   getDetailPost,
 };
