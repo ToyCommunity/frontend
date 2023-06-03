@@ -6,7 +6,7 @@ import { GetDetailResponse, postApi } from '@/api';
 import { GetServerSideProps, NextPage } from 'next';
 
 interface DetailProps {
-  detail: GetDetailResponse | null;
+  detail: GetDetailResponse | undefined;
 }
 
 const DetailPage: NextPage<DetailProps> = ({ detail }) => {
@@ -15,7 +15,7 @@ const DetailPage: NextPage<DetailProps> = ({ detail }) => {
       maxWidth="lg"
     >
       {detail
-        ? 
+        ?
         <Box
           display="flex"
           flexDirection="column"
@@ -38,7 +38,7 @@ const DetailPage: NextPage<DetailProps> = ({ detail }) => {
                 color: orange[500]
               }}
             >
-              {detail?.category} 
+              {detail?.category}
             </Typography>
             <Typography
               variant='h5'
@@ -74,7 +74,7 @@ const DetailPage: NextPage<DetailProps> = ({ detail }) => {
           </Box>
           <Box
             display="flex"
-            alignItems= "start"
+            alignItems="start"
           >
             <Button
               variant="outlined"
@@ -85,17 +85,17 @@ const DetailPage: NextPage<DetailProps> = ({ detail }) => {
                 color: grey[500]
               }}
             >
-              <ThumbUpAlt 
+              <ThumbUpAlt
                 sx={{
                   color: grey[400],
                   marginRight: '4px'
-                }} 
+                }}
               />
               {detail.likeCounts}
             </Button>
             <Box>
               <Box>
-              {detail.content}
+                {detail.content}
               </Box>
               <Box
                 display="flex"
@@ -122,22 +122,22 @@ const DetailPage: NextPage<DetailProps> = ({ detail }) => {
                   {detail.viewCounts}
                 </Typography>
                 <Typography
-                    display="flex"
-                    alignItems="center"
+                  display="flex"
+                  alignItems="center"
+                  sx={{
+                    fontSize: '12px',
+                    marginRight: "20px"
+                  }}
+                >
+                  <Comment
                     sx={{
-                      fontSize: '12px',
-                      marginRight: "20px"
+                      color: grey[400],
+                      fontSize: '18px',
+                      marginRight: "8px"
                     }}
-                  >
-                    <Comment
-                      sx={{
-                        color: grey[400],
-                        fontSize: '18px',
-                        marginRight: "8px"
-                      }}
-                    />
-                    {detail.replies.length}
-                  </Typography>
+                  />
+                  {detail.replies.length}
+                </Typography>
               </Box>
             </Box>
           </Box>
@@ -152,14 +152,14 @@ const DetailPage: NextPage<DetailProps> = ({ detail }) => {
       }
     </Container>
   );
-}
+};
 
 export const getServerSideProps: GetServerSideProps<DetailProps> = async ({ query }) => {
   const postId = Number(query.id);
   let detail: GetDetailResponse | null = null;
 
   try {
-    detail = await postApi.getDetailPost(postId);
+    detail = await postApi.getDetailPost({ postId });
   } catch (error) {
     console.error('Error getDetailPost:', error);
   }
