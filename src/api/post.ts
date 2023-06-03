@@ -53,6 +53,11 @@ const updatePost = async (params: UpdatePostRequest) => {
   await api.patch('/posts', { ...params });
 };
 
+export interface GetDetailRequest {
+  postId: number;
+  signal?: AbortSignal;
+}
+
 export interface Replie {
   replyLikes: number,
   replyStatus: string,
@@ -77,8 +82,8 @@ export interface GetDetailResponse {
   content: string
 }
 
-const getDetailPost = async (postId: number) => {
-  const { data } = await api.get<GetDetailResponse>(`/posts/detail/${postId}`);
+const getDetailPost = async ({ postId, signal }: GetDetailRequest) => {
+  const { data } = await api.get<GetDetailResponse>(`/posts/detail/${postId}`, { signal });
 
   return data;
 };
