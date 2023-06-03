@@ -32,7 +32,7 @@ function PostEditor() {
   };
 
   const createPost = async () => {
-    await postApi.createPosts({ title, content });
+    await postApi.createPost({ title, content });
     router.push('/');
   };
 
