@@ -4,6 +4,7 @@ import { orange, grey } from '@mui/material/colors';
 import { ThumbUpAlt, RemoveRedEye, Comment } from '@mui/icons-material';
 import { GetDetailResponse, postApi } from '@/api';
 import { GetServerSideProps } from 'next';
+import ReplyList from '@/components/reply/ReplyList';
 
 interface DetailProps {
   detail: GetDetailResponse;
@@ -23,124 +24,153 @@ const DetailPage = ({ detail }: DetailProps) => {
           padding: '48px 24px'
         }}
       >
-        <Box
-          sx={{
-            marginBottom: '32px'
-          }}
-        >
-          <Typography
-            gutterBottom
-            sx={{
-              fontSize: '12px',
-              fontWeight: 'bold',
-              color: orange[500]
-            }}
-          >
-            {detail?.category}
-          </Typography>
-          <Typography
-            variant='h5'
-            component="h3"
-            sx={{
-              marginY: '20px',
-            }}
-          >
-            {detail.title}
-          </Typography>
+        <Box>
           <Box
             display="flex"
-            alignItems="center"
-          >
-            <Avatar
-              alt="Avatar"
-              sx={{
-                width: 36,
-                height: 36,
-                marginRight: "12px"
-              }}
-            />
-            <Typography
-              sx={{
-                fontSize: '11px',
-                color: grey[500],
-                marginY: '12px'
-              }}
-            >
-              {detail.nickname}
-            </Typography>
-          </Box>
-        </Box>
-        <Box
-          display="flex"
-          alignItems="start"
-        >
-          <Button
-            variant="outlined"
+            flexDirection="column"
+            justifyContent="space-between"
+            alignItems="left"
             sx={{
-              borderColor: grey[200],
-              padding: "8px 20px",
-              marginRight: '24px',
-              color: grey[500]
+              padding: '48px 24px'
             }}
           >
-            <ThumbUpAlt
+            <Box
               sx={{
-                color: grey[400],
-                marginRight: '4px'
+                marginBottom: '32px'
               }}
-            />
-            {detail.likeCounts}
-          </Button>
-          <Box>
-            <Box>
-              {detail.content}
+            >
+              <Typography
+                gutterBottom
+                sx={{
+                  fontSize: '12px',
+                  fontWeight: 'bold',
+                  color: orange[500]
+                }}
+              >
+                {detail?.category}
+              </Typography>
+              <Typography
+                variant='h5'
+                component="h3"
+                sx={{
+                  marginY: '20px',
+                }}
+              >
+                {detail.title}
+              </Typography>
+              <Box
+                display="flex"
+                alignItems="center"
+              >
+                <Avatar
+                  alt="Avatar"
+                  sx={{
+                    width: 36,
+                    height: 36,
+                    marginRight: "12px"
+                  }}
+                />
+                <Typography
+                  sx={{
+                    fontSize: '11px',
+                    color: grey[500],
+                    marginY: '12px'
+                  }}
+                >
+                  {detail.nickname}
+                </Typography>
+              </Box>
             </Box>
             <Box
               display="flex"
-              alignItems="center"
+              alignItems="start"
+            >
+              <Button
+                variant="outlined"
+                sx={{
+                  borderColor: grey[200],
+                  padding: "8px 20px",
+                  marginRight: '24px',
+                  color: grey[500]
+                }}
+              >
+                <ThumbUpAlt
+                  sx={{
+                    color: grey[400],
+                    marginRight: '4px'
+                  }}
+                />
+                {detail.likeCounts}
+              </Button>
+              <Box>
+                <Box>
+                  {detail.content}
+                </Box>
+                <Box
+                  display="flex"
+                  alignItems="center"
+                  sx={{
+                    marginTop: '24px'
+                  }}
+                >
+                  <Typography
+                    display="flex"
+                    alignItems="center"
+                    sx={{
+                      fontSize: '12px',
+                      marginRight: "20px"
+                    }}
+                  >
+                    <RemoveRedEye
+                      sx={{
+                        color: grey[400],
+                        fontSize: '18px',
+                        marginRight: "8px"
+                      }}
+                    />
+                    {detail.viewCounts}
+                  </Typography>
+                  <Typography
+                    display="flex"
+                    alignItems="center"
+                    sx={{
+                      fontSize: '12px',
+                      marginRight: "20px"
+                    }}
+                  >
+                    <Comment
+                      sx={{
+                        color: grey[400],
+                        fontSize: '18px',
+                        marginRight: "8px"
+                      }}
+                    />
+                    {detail.replies.length}
+                  </Typography>
+                </Box>
+              </Box>
+            </Box>
+          </Box>
+          <Box
+            sx={{
+              padding: '48px 24px',
+              backgroundColor: '#f9fafb',
+              borderTop: '0.0625rem solid #e7e7e7'
+            }}
+          >
+            <Typography
               sx={{
-                marginTop: '24px'
+                fontSize: '18px',
+                marginBottom: '16px'
               }}
             >
-              <Typography
-                display="flex"
-                alignItems="center"
-                sx={{
-                  fontSize: '12px',
-                  marginRight: "20px"
-                }}
-              >
-                <RemoveRedEye
-                  sx={{
-                    color: grey[400],
-                    fontSize: '18px',
-                    marginRight: "8px"
-                  }}
-                />
-                {detail.viewCounts}
-              </Typography>
-              <Typography
-                display="flex"
-                alignItems="center"
-                sx={{
-                  fontSize: '12px',
-                  marginRight: "20px"
-                }}
-              >
-                <Comment
-                  sx={{
-                    color: grey[400],
-                    fontSize: '18px',
-                    marginRight: "8px"
-                  }}
-                />
-                {detail.replies.length}
-              </Typography>
-            </Box>
+              댓글
+            </Typography>
+            <ReplyList />
           </Box>
         </Box>
       </Box>
-    </Container>
+    </Container >
   );
 };
 
