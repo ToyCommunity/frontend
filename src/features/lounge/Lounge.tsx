@@ -23,7 +23,7 @@ function Lounge() {
           커뮤니티에서 자유롭게 이야기 나눠보세요!
         </Typography>
         <Link
-          href="/post/edit"
+          href="/post/create"
           passHref
           legacyBehavior
         >

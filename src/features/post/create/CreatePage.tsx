@@ -1,22 +1,11 @@
 import React, { useState } from 'react';
-import dynamic from 'next/dynamic';
+import { useRouter } from 'next/router';
 import { Button, Container, Stack, TextField } from '@mui/material';
-import MDEditorSkeleton from './MDEditorSkeleton';
 import { useBeforeUnload } from '@/hooks/common';
 import { postApi } from '@/api/post';
+import MDEditor from '@/components/MDEditor';
 
-import "@uiw/react-markdown-preview/markdown.css";
-import "@uiw/react-md-editor/markdown-editor.css";
-import { useRouter } from 'next/router';
-
-const MDEditor = dynamic(
-  () => import("@uiw/react-md-editor"),
-  {
-    ssr: false, loading: () => <MDEditorSkeleton />
-  }
-);
-
-function PostEditor() {
+function CreatePage() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const router = useRouter();
@@ -32,7 +21,7 @@ function PostEditor() {
   };
 
   const createPost = async () => {
-    await postApi.createPosts({ title, content });
+    await postApi.createPost({ title, content });
     router.push('/');
   };
 
@@ -80,4 +69,4 @@ function PostEditor() {
   );
 }
 
-export default PostEditor;
+export default CreatePage;

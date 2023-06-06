@@ -34,14 +34,29 @@ const getPosts = async ({ page } : GetPostsRequest) => {
   return data;
 };
 
-export interface CreatePostsRequest {
+export interface CreatePostRequest {
   title: string;
   content: string;
 }
 
-const createPosts = async (params: CreatePostsRequest) => {
-  await api.post('/posts', { params });
+const createPost = async (params: CreatePostRequest) => {
+  await api.post('/posts', { ...params });
 };
+
+export interface UpdatePostRequest {
+  postId: number;
+  title: string;
+  content: string;
+}
+
+const updatePost = async (params: UpdatePostRequest) => {
+  await api.patch('/posts', { ...params });
+};
+
+export interface GetDetailRequest {
+  postId: number;
+  signal?: AbortSignal;
+}
 
 export interface Replie {
   replyLikes: number,
@@ -67,14 +82,15 @@ export interface GetDetailResponse {
   content: string
 }
 
-const getDetailPost = async (postId: number) => {
-  const { data } = await api.get<GetDetailResponse>(`/posts/detail/${postId}`);
+const getDetailPost = async ({ postId, signal }: GetDetailRequest) => {
+  const { data } = await api.get<GetDetailResponse>(`/posts/detail/${postId}`, { signal });
 
   return data;
 };
 
 export const postApi = {
-  createPosts,
+  createPost,
+  updatePost,
   getPosts,
   getDetailPost,
 };
