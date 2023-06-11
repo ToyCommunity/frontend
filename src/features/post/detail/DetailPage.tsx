@@ -1,16 +1,36 @@
 import React from 'react';
-import { Box, Button, Avatar, Container, Typography } from '@mui/material';
+import { Box, Button, Avatar, Container, Typography, Menu, MenuItem, Fade, IconButton } from '@mui/material';
 import { orange, grey } from '@mui/material/colors';
 import { ThumbUpAlt, RemoveRedEye, Comment } from '@mui/icons-material';
 import { GetDetailResponse, postApi } from '@/api';
 import { GetServerSideProps } from 'next';
 import ReplyList from '@/components/reply/ReplyList';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { useRouter } from 'next/router';
+
 
 interface DetailProps {
   detail: GetDetailResponse;
 }
 
 const DetailPage = ({ detail }: DetailProps) => {
+  const router = useRouter();
+  const id = Number(router.query?.id);
+
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const openDetailMenu = Boolean(anchorEl);
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  const onClickEdit = () => {
+    router.push(`/post/edit/${id}`)
+  };
+  const onClickDelete = () => {
+  };
+
   return (
     <Container
       maxWidth="lg"
@@ -109,28 +129,32 @@ const DetailPage = ({ detail }: DetailProps) => {
                 <Box
                   display="flex"
                   alignItems="center"
+                  justifyContent="space-between" 
                   sx={{
                     marginTop: '24px'
                   }}
                 >
-                  <Typography
+                  <Box
                     display="flex"
-                    alignItems="center"
-                    sx={{
-                      fontSize: '12px',
-                      marginRight: "20px"
-                    }}
                   >
-                    <RemoveRedEye
+                    <Typography
+                      display="flex"
+                      alignItems="center"
                       sx={{
-                        color: grey[400],
-                        fontSize: '18px',
-                        marginRight: "8px"
+                        fontSize: '12px',
+                        marginRight: "20px"
                       }}
-                    />
-                    {detail.viewCounts}
-                  </Typography>
-                  <Typography
+                    >
+                      <RemoveRedEye
+                        sx={{
+                          color: grey[400],
+                          fontSize: '18px',
+                          marginRight: "8px"
+                        }}
+                      />
+                      {detail.viewCounts}
+                    </Typography>
+                    <Typography
                     display="flex"
                     alignItems="center"
                     sx={{
@@ -147,6 +171,32 @@ const DetailPage = ({ detail }: DetailProps) => {
                     />
                     {detail.replies.length}
                   </Typography>
+                  </Box>
+                  <Box>
+                    <IconButton
+                      aria-label="more"
+                      id="long-button"
+                      aria-controls={openDetailMenu ? 'fade-menu' : undefined}
+                      aria-haspopup="true"
+                      aria-expanded={openDetailMenu ? 'true' : undefined}
+                      onClick={handleClick}
+                    >
+                      <MoreVertIcon />
+                    </IconButton>
+                    <Menu
+                      id="fade-menu"
+                      MenuListProps={{
+                        'aria-labelledby': 'fade-button',
+                      }}
+                      anchorEl={anchorEl}
+                      open={openDetailMenu}
+                      onClose={handleClose}
+                      TransitionComponent={Fade}
+                    >
+                      <MenuItem onClick={onClickEdit}>수정</MenuItem>
+                      <MenuItem onClick={onClickDelete}>삭제</MenuItem>
+                    </Menu>
+                  </Box>
                 </Box>
               </Box>
             </Box>
